@@ -9,7 +9,7 @@ services:
         source: ./laravel
         target: /var/www/html
       - type: volume
-        source: node_modules
+        source: node_modules_volume
         target: /var/www/html/node_modules
     ports:
       - "5173:5173"
@@ -32,10 +32,12 @@ services:
       - "43306:3306"
 
 volumes:
-  node_modules:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/laravel/node_modules
-      o: bind
+  node_modules_volume:
   db-store:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: ${PWD}/laravel/node_modules
+#      o: bind
+
+

@@ -1,19 +1,20 @@
 <template>
     <header class="app-header">
         <div class="header-content">
-            <img :src="DocumentImage" alt="Document Icon" class="header-icon"/>
-            <h1 class="header-title">メモアプリ</h1>
-            <h2>aaa</h2>
+            <DocumentImage class="header-icon" />
+            <h1 class="header-title">かんたんメモ</h1>
         </div>
+        <p class="header-subtitle ">思いついたことをサッと記録しよう</p>
     </header>
 </template>
 
 <script setup>
-import DocumentImage from '../../Documentsvg.png';
+import DocumentImage from './svgs/DocumentSvg.vue';
 </script>
 <style scoped>
 .app-header {
     display: flex; /* 要素を横並びにする */
+    flex-direction: column;
     justify-content: center; /* ★ここを追加・変更★ 横方向の中央揃え */
     align-items: center; /* 垂直方向の中央揃え */
     padding: 30px 20px; /* 上下左右のパディング */
@@ -25,6 +26,7 @@ import DocumentImage from '../../Documentsvg.png';
 .header-content {
     display: flex; /* アイコンとタイトルを再度Flexboxで横並びにする */
     align-items: center; /* 垂直方向の中央揃え */
+    margin-bottom: 5px;
     /* 必要であれば、ここに最大幅などを設定できます */
 }
 
@@ -36,10 +38,22 @@ import DocumentImage from '../../Documentsvg.png';
        元画像の色を活かすのが一般的です。 */
     /* filter: invert(1) grayscale(1) brightness(2); */
 }
+.title-group {
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+}
 
 .header-title {
-    font-size: 1.5rem; /* タイトルの文字サイズ */
+    font-size: 30px; /* タイトルの文字サイズ */
     margin: 0; /* h1タグのデフォルトマージンをリセット */
-    font-weight: extrabold; /* タイトルの太さ */
+    font-weight: 800; /* タイトルの太さ */
+    font-family: sans-serif;
+}
+.header-subtitle {
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: normal;
+    color: black;
+    line-height: 1.2;
 }
 </style>

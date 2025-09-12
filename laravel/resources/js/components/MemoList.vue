@@ -2,7 +2,7 @@
     <div class="memo-list-section">
         <div class="list-header">
             <h2 class="list-title">
-                <span class="icon">📄</span> 保存されたメモ
+                <span class="icon"><DocumentImage/></span> 保存されたメモ
             </h2>
             <span class="memo-count-chip">{{ memos.length }}件</span>
         </div>
@@ -14,14 +14,15 @@
             <div v-for="memo in memos" :key="memo.id" class="memo-item">
                 <p class="memo-content">{{ memo.content }}</p>
                 <span class="memo-date">{{ memo.created_at }}</span>
-                <button class="delete-button"> <img :src="TrashIcon" alt="削除" class="delete-icon" /></button>
+                <button @click="$emit('delete-memo',memo.id)" class="delete-button"> <TrashIcon/></button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import TrashIcon from'../../trashimages.png';
+import TrashIcon from'./svgs/TrashSvg.vue';
+import DocumentImage from './svgs/DocumentSvg.vue';
 // ★ 3. 親コンポーネントからデータを受け取るための定義
 defineProps({
     memos: {
@@ -29,13 +30,15 @@ defineProps({
         required: true, // このデータは必須
     },
 });
+defineEmits(['delete-memo']);
+
 </script>
 
 <style scoped>
 /* App.vueから持ってきたスタイルをそのまま貼り付け */
 .memo-list-section {
     margin-top: 40px;
-    max-width:800px;
+    max-width:600px;
     margin: 20px auto; /* 上下に20px、左右は自動で中央揃え */
 
 }

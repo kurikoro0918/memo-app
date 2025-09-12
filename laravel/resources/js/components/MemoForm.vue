@@ -2,7 +2,7 @@
     <div class="app-main-content">
         <div class="form-container">
             <div class="form-header">
-                <span class="plus-icon">+</span>
+               <PlusImage/>
                 <h2 class="form-title">新しいメモ</h2>
             </div>
 
@@ -18,7 +18,7 @@
 
             <div class="form-actions">
                 <button type="button" @click="submitMemo" class="save-button" :disabled="memoContent.trim() === ''">
-                    <span class="plus-icon">+</span> メモを保存
+                    <span class="plus-icon">+メモを保存</span>
                 </button>
             </div>
         </div>
@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-
+import PlusImage from './svgs/PlusSvg.vue';
 const memoContent = ref('');
 const textareaRef = ref(null);
 
@@ -91,7 +91,7 @@ const submitMemo = () => {
 .memo-input:focus { outline: none; border-color: #f7a977; box-shadow: 0 0 0 2px rgba(247, 169, 119, 0.2); }
 .form-actions { text-align: center; margin-top: 25px; }
 .save-button { display: inline-flex; align-items: center; padding: 12px 25px; background: linear-gradient(to right, #ffb38f, #f7a977); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(247, 169, 119, 0.3); transition: all 0.2s ease; }
-.save-button .plus-icon { font-size: 1.2rem; margin-right: 8px; color: white; }
+.save-button .plus-icon { font-size: 1.2rem; margin-right: 8px; color: white; width:400px; }
 .save-button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(247, 169, 119, 0.4); }
 .save-button:disabled {
     background: linear-gradient(to right, #ffc8b4, #f9c0a3);

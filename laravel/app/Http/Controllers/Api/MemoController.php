@@ -61,8 +61,12 @@ class MemoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Memo $memo)
     {
-        //
+        // 渡されたモデルをデータベースから削除
+        $memo->delete();
+
+        // 成功したことを示すレスポンスを返す (204 No Content)
+        return response()->noContent();
     }
 }

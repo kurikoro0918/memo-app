@@ -4,7 +4,7 @@
 
         <main>
             <MemoForm @save-memo="handleNewMemo" />
-            <MemoList :memos="memos"/>
+            <MemoList :memos="memos" @delete-memo="deleteMemo"/>
         </main>
     </div>
 </template>
@@ -45,6 +45,24 @@ const handleNewMemo = async(newMemo) => {
         alert('メモの保存に失敗しました。');
     }
 };
+const deleteMemo = async (memoId) => {
+    // ユーザーに削除を確認
+    if (!confirm('本当にこのメモを削除しますか？')) {
+        return;
+    }
+
+    try {
+        // APIを呼び出してデータベースから削除
+        await axios.delete(`/api/memos/${memoId}`);
+
+        // フロントエンドのmemos配列からも削除
+        memos.value = memos.value.filter(memo => memo.id !== memoId);
+
+    } catch (error) {
+        console.error('メモの削除に失敗しました:', error);
+        alert('メモの削除に失敗しました。');
+    }
+};
 </script>
 
 <style>
@@ -53,7 +71,8 @@ html, body, #app {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #fffaf5, #fdeee6, #fff6e9);
+    background-attachment: fixed;
 }
 
 

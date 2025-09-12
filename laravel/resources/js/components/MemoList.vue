@@ -14,12 +14,14 @@
             <div v-for="memo in memos" :key="memo.id" class="memo-item">
                 <p class="memo-content">{{ memo.content }}</p>
                 <span class="memo-date">{{ memo.created_at }}</span>
+                <button class="delete-button"> <img :src="TrashIcon" alt="削除" class="delete-icon" /></button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import TrashIcon from'../../trashimages.png';
 // ★ 3. 親コンポーネントからデータを受け取るための定義
 defineProps({
     memos: {
@@ -72,6 +74,8 @@ defineProps({
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative; /* ★ 1. ゴミ箱ボタンの配置の基準にする */
+    padding-right: 45px;
 }
 .memo-item:hover {
     transform: translateY(-3px);
@@ -94,4 +98,40 @@ defineProps({
     color: #888;
     padding: 20px;
 }
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #aaa;
+    padding: 5px;
+    border-radius: 50%;
+
+    /* ★ 4. 絶対位置で右上へ配置 */
+    position: absolute;
+    top: 10px;    /* 上から10px */
+    right: 10px;  /* 右から10px */
+
+    /* ★ 5. 最初は非表示にする */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+/* ★ 6. メモアイテムがホバーされたら、ゴミ箱ボタンを表示 */
+.memo-item:hover .delete-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+.delete-button:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+.delete-icon {
+    width: 18px; /* アイコンの幅 */
+    height: 18px; /* アイコンの高さ */
+    display: block; /* 余白をなくす */
+}
 </style>
+

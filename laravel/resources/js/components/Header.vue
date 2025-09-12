@@ -3,6 +3,7 @@
         <div class="header-content">
             <img :src="DocumentImage" alt="Document Icon" class="header-icon"/>
             <h1 class="header-title">メモアプリ</h1>
+            <h2>aaa</h2>
         </div>
     </header>
 </template>
@@ -15,11 +16,11 @@ import DocumentImage from '../../Documentsvg.png';
     display: flex; /* 要素を横並びにする */
     justify-content: center; /* ★ここを追加・変更★ 横方向の中央揃え */
     align-items: center; /* 垂直方向の中央揃え */
-    padding: 10px 20px; /* 上下左右のパディング */
-    background-color: #4a90e2; /* ヘッダーの背景色 */
-    color: white; /* テキストの色 */
+    padding: 30px 20px; /* 上下左右のパディング */
+    background-color: white; /* ヘッダーの背景色 */
+    color: orangered; /* テキストの色 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 軽い影で立体感を出す */
-    border-bottom: 1px solid #3a7bd5; /* 下部に細いボーダー */
+
 }
 .header-content {
     display: flex; /* アイコンとタイトルを再度Flexboxで横並びにする */
@@ -39,6 +40,6 @@ import DocumentImage from '../../Documentsvg.png';
 .header-title {
     font-size: 1.5rem; /* タイトルの文字サイズ */
     margin: 0; /* h1タグのデフォルトマージンをリセット */
-    font-weight: bold; /* タイトルの太さ */
+    font-weight: extrabold; /* タイトルの太さ */
 }
 </style>
